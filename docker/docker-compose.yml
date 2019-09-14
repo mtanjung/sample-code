@@ -1,0 +1,66 @@
+version: "3.4"
+services:
+  php:
+    build: 
+      context: './php/'
+      args:
+       PHP_VERSION: ${PHP_VERSION}
+    networks:
+      - backend
+    volumes:
+      - ${PROJECT_ROOT}/:/var/www/proto/
+    container_name: php
+    #command: php /var/www/proto/portal/symfony keywordobjects:bootstrap-config
+    #tty: true
+    environment:
+      DOCKER_HOST: host.docker.internal
+    extra_hosts:
+       - "aud.proto.ko.int:172.18.0.4"
+       - "ppc.proto.ko.int:172.18.0.4"
+       - "seo.proto.ko.int:172.18.0.4"
+       - "syn.proto.ko.int:172.18.0.4"
+       - "da.proto.ko.int:172.18.0.4"
+       - "dash.proto.ko.int:172.18.0.4"
+       - "admin.proto.ko.int:172.18.0.4"
+  apache:
+    build:
+      context: './apache/'
+      args:
+       APACHE_VERSION: ${APACHE_VERSION}
+    depends_on:
+      - php
+      - mysql
+    networks:
+      - frontend
+      - backend
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ${PROJECT_ROOT}/:/var/www/proto/
+    container_name: apache
+    environment:
+      DOCKER_HOST: host.docker.internal
+    #extra_hosts:
+    #   - "aud.proto.ko.int:172.17.0.1"
+  mysql:
+    image: mysql:${MYSQL_VERSION:-latest}
+    command: mysqld --sql_mode="" --local_infile=1
+    restart: always
+    ports:
+      - "3306:3306"
+    volumes:
+      - ${DATABASE_DIR}/:/var/lib/mysql
+      - ${PROJECT_ROOT}/:/var/www/proto/
+    networks:
+      - backend
+    environment:
+      MYSQL_ROOT_PASSWORD: "${DB_ROOT_PASSWORD}"
+      #MYSQL_DATABASE: "${DB_NAME}"
+      MYSQL_USER: "${DB_USERNAME}"
+      MYSQL_PASSWORD: "${DB_PASSWORD}"
+    container_name: mysql
+    command: mysqld --innodb-buffer-pool-size=256M --sql_mode=""
+networks:
+  frontend:
+  backend:

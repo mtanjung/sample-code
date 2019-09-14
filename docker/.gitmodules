@@ -1,0 +1,27 @@
+[submodule "apps/admin"]
+	path = apps/admin
+	url = git@acronym.git.beanstalkapp.com:/acronym/keyword-objects-backend.git
+[submodule "apps/aud"]
+	path = apps/aud
+	url = git@acronym.git.beanstalkapp.com:/acronym/keyword-objects-aud.git
+[submodule "apps/da"]
+	path = apps/da
+	url = git@acronym.git.beanstalkapp.com:/acronym/keyword-objects-digital-audits.git
+[submodule "apps/dash"]
+	path = apps/dash
+	url = git@acronym.git.beanstalkapp.com:/acronym/keyword-objects-dash.git
+[submodule "apps/portal"]
+	path = apps/portal
+	url = git@acronym.git.beanstalkapp.com:/acronym/keyword-objects-frontend.git
+[submodule "apps/ppc"]
+	path = apps/ppc
+	url = git@acronym.git.beanstalkapp.com:/acronym/keyword-objects-ppc-new.git
+[submodule "apps/seo"]
+	path = apps/seo
+	url = git@acronym.git.beanstalkapp.com:/acronym/keyword-objects-seo.git
+[submodule "apps/syn"]
+	path = apps/syn
+	url = git@acronym.git.beanstalkapp.com:/acronym/keyword-objects-synergy.git
+[submodule "apps/ui"]
+	path = apps/ui
+	url = git@acronym.git.beanstalkapp.com:/acronym/keyword-objects-ui.git
