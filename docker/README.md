@@ -116,5 +116,5 @@ php_value max_input_vars 10000 => #php_value max_input_vars 10000
 
 Note: Do not commit these changes
 
-## Step 9: Verify KeywordObjects is working
+## Step 9: Verify the app is working
 Open your favorite browser and go to: https://proto.ko.ext/index.php/login
